@@ -1,0 +1,136 @@
+# User Experience
+
+Navastra should feel like a tool people can adopt in minutes and keep using for
+years.
+
+## Product Feel
+
+- fast
+- quiet
+- precise
+- personal
+- trustworthy
+- slightly futuristic
+
+The product should not feel like enterprise IT software or a generic bookmark
+manager.
+
+## First-Run Experience
+
+The first session should get a user to one successful jump quickly:
+
+1. Install or open Navastra.
+2. Add a first route.
+3. Try the route from the address bar.
+4. Land on the destination.
+5. See a small route list with edit and import options.
+
+## Address-Bar Syntax
+
+The syntax should be short and easy to remember.
+
+Candidates:
+
+```text
+nav budget
+n budget
+go budget
+nav/budget
+```
+
+For MVP, `nav budget` through a browser extension keyword is likely the most
+reliable. A hosted resolver can support URLs like:
+
+```text
+https://navastra.app/go/budget
+```
+
+## Route Manager
+
+The route manager should prioritize scanning and editing.
+
+Important views:
+
+- all routes
+- recently used
+- recently created
+- broken or unchecked links
+- collections
+- import review
+
+Important actions:
+
+- create route
+- edit destination
+- copy route
+- duplicate route
+- delete route
+- export routes
+- import bookmarks
+
+## Import Experience
+
+Browser bookmarks are messy. Import should not dump everything into the main
+namespace.
+
+Recommended import flow:
+
+1. Upload bookmark export.
+2. Show folders and candidate links.
+3. Suggest route names.
+4. Let the user promote selected bookmarks into active routes.
+5. Keep the rest in an imported collection or discard them.
+
+## Not-Found Experience
+
+When a route is missing, Navastra should help the user recover.
+
+Options:
+
+- show nearest matches
+- offer to create the route
+- search imported bookmarks
+- search recent browser history if permission exists
+
+Example:
+
+```text
+No route named "payrol".
+Did you mean "payroll"?
+```
+
+## Sharing Experience
+
+Sharing should feel scoped and intentional.
+
+Examples:
+
+- share a single route
+- export a collection
+- publish a read-only collection
+- subscribe to someone else's public collection
+
+The default state should be private.
+
+## Tone
+
+Use plain language:
+
+- route
+- name
+- destination
+- collection
+- import
+- export
+- sync
+
+Avoid leading with technical language:
+
+- DID
+- DWN
+- decentralized
+- self-sovereign
+- cryptographic identity
+
+Those concepts can appear in advanced settings, developer docs, and architecture
+notes.
