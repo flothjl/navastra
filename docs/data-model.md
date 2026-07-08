@@ -1,6 +1,7 @@
 # Data Model
 
-The data model should be small, explicit, and portable.
+The data model should be small, explicit, portable, and represented as an Enbox
+protocol from v0.
 
 ## Route
 
@@ -112,5 +113,47 @@ The export format should be plain JSON:
 
 ## Sync Notes
 
-The route schema should be storage-neutral. Hosted sync, local files, and
-DWN-backed storage should all be able to read and write the same logical data.
+The route schema should be storage-neutral in shape, but Enbox is the canonical
+runtime. Exports, tests, and future tooling should read and write the same
+logical data that is stored in Enbox records.
+
+## Enbox Protocol Sketch
+
+The first implementation should define a Navastra protocol with route and
+collection record types.
+
+```ts
+import { defineProtocol } from '@enbox/api';
+
+export const NavastraProtocol = defineProtocol({
+  protocol: 'https://navastra.app/protocols/routes',
+  published: false,
+  types: {
+    route: {
+      schema: 'https://navastra.app/schemas/route',
+      dataFormats: ['application/json'],
+      encryptionRequired: true,
+    },
+    collection: {
+      schema: 'https://navastra.app/schemas/collection',
+      dataFormats: ['application/json'],
+      encryptionRequired: true,
+    },
+  },
+  structure: {
+    route: {
+      $tags: {
+        name: { type: 'string' },
+        collection: { type: 'string' },
+      },
+    },
+    collection: {},
+  },
+} as const, {} as {
+  route: Route;
+  collection: Collection;
+});
+```
+
+Route names should be available as tags so clients can query and hydrate local
+caches efficiently. The encrypted record body remains the source of truth.

@@ -20,10 +20,12 @@ manager.
 The first session should get a user to one successful jump quickly:
 
 1. Install or open Navastra.
-2. Add a first route.
-3. Try the route from the address bar.
-4. Land on the destination.
-5. See a small route list with edit and import options.
+2. Connect or create an Enbox-backed identity with minimal friction.
+3. Add a first route.
+4. Store the route through Enbox.
+5. Try the route from the address bar.
+6. Land on the destination.
+7. See a small route list with edit and import options.
 
 ## Address-Bar Syntax
 
@@ -134,3 +136,21 @@ Avoid leading with technical language:
 
 Those concepts can appear in advanced settings, developer docs, and architecture
 notes.
+
+## Enbox Visibility
+
+Users should see simple product language first:
+
+- sync
+- portable routes
+- private by default
+- your namespace
+
+Developers should be able to find Enbox details quickly:
+
+- active DID
+- DWN endpoint
+- protocol version
+- record count
+- sync status
+- export/debug tools

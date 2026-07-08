@@ -17,17 +17,19 @@
 ## Technical
 
 - What is the first browser target?
-- Should the MVP require a hosted backend?
-- Should local-first sync be implemented before or after extension validation?
-- What storage adapter should be built first?
-- How early should DWN/Enbox integration happen?
+- Which Enbox package should the browser client use first: `@enbox/api` or
+  `@enbox/browser`?
+- Which DWN endpoint should be used for development?
+- How should route names be indexed for fast lookup while keeping route data
+  encrypted?
+- Should route cache hydration use query-on-load, subscriptions, or both?
 
 ## Identity And Ownership
 
 - What does account recovery look like if routes belong to the user?
 - How much identity detail should be visible in the UI?
-- Can users migrate between hosted and self-controlled storage?
 - How are shared collections authorized and revoked?
+- How should self-hosted DWN endpoints be configured in the UI?
 
 ## Business
 
@@ -42,5 +44,7 @@
 - Browser address-bar behavior may limit the ideal syntax.
 - Users may not want another extension.
 - Bookmark import may create noise instead of clarity.
-- Decentralized storage may distract from validating the core loop.
+- Enbox API changes may affect the reference app while the platform is still in
+  research preview.
+- DWN sync complexity may slow down the first address-bar validation loop.
 - Naming may need formal clearance before public launch.

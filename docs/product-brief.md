@@ -61,18 +61,18 @@ If you can remember the name, Navastra can get you there.
 ## Differentiation
 
 Enterprise go-link products are usually workspace tools. Navastra starts with
-the individual.
+the individual and uses Enbox to make that individual ownership real.
 
 The product should feel like a faster bookmark manager, but the deeper
 differentiator is ownership:
 
 - the namespace belongs to the user
-- routes are portable data
-- sync can be backed by user-controlled identity and storage
+- routes are portable Enbox records
+- sync is backed by user-controlled identity and DWN storage
 - sharing can be explicit and scoped
 
 The product should not lead with "self-sovereign" language. It should lead with
-speed, memory, and control.
+speed, memory, and control. Enbox is the proof mechanism, not the billboard.
 
 ## Positioning
 
@@ -90,6 +90,7 @@ Navastra is:
 - a portable namespace for links
 - a fast recall tool
 - a small shared map when people choose to collaborate
+- a reference app for Enbox's protocol-first application model
 
 ## Success Metrics
 

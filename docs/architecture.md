@@ -1,6 +1,7 @@
 # Architecture
 
-Navastra should be built as a small set of replaceable layers:
+Navastra should be built as an Enbox-first app with a small set of clear client
+layers:
 
 ```text
 Browser / Web UI
@@ -9,17 +10,18 @@ Route Resolver
       |
 Local Route Cache
       |
-Sync Adapter
+Enbox Route Store
       |
-User-Controlled Storage
+User DID + DWN Sync
 ```
 
 ## Design Principles
 
 - **Resolution should be fast:** route lookup must feel instant.
-- **Storage should be portable:** route data should use a documented schema.
-- **Sync should be replaceable:** the app should not depend permanently on one
-  backend.
+- **Storage should be Enbox-native:** route data should be stored as typed
+  Enbox records from the first build.
+- **Sync should prove the platform:** the app should exercise Enbox auth,
+  record CRUD, subscriptions, session restore, and DWN sync.
 - **Identity should be useful, not loud:** users should benefit from ownership
   without needing to learn new terminology on day one.
 - **Offline should degrade gracefully:** cached routes should continue to work.
@@ -37,7 +39,7 @@ Responsibilities:
 - resolve route names from local cache
 - redirect to destinations
 - open route management UI
-- sync route cache in the background
+- hydrate and update the local route cache from Enbox records
 
 ### Web App
 
@@ -49,7 +51,8 @@ Responsibilities:
 - search and filter routes
 - import and export route data
 - manage collections
-- configure sync provider
+- connect to Enbox
+- show sync and session state
 
 ### Resolver
 
@@ -73,24 +76,27 @@ Possible storage options:
 - SQLite for a future desktop/native client
 - in-memory cache for server-side resolver requests
 
-### Sync Adapter
+### Enbox Route Store
 
-The sync adapter abstracts remote persistence.
+The Enbox route store is the primary persistence layer.
 
-Initial adapter options:
+Responsibilities:
 
-- simple hosted API for fast MVP
-- file-backed sync for local development
-- Decentralized Web Node adapter using Enbox or similar tooling
+- define the Navastra route protocol
+- create, query, update, and delete route records
+- restore sessions
+- subscribe to route changes where useful
+- sync against a development or self-hosted DWN endpoint
 
-The public route schema should remain stable regardless of adapter choice.
+The route schema should remain portable and versioned, but Enbox is not a
+pluggable afterthought. Navastra should be a serious demonstration of the Enbox
+application model.
 
-### Storage Layer
+### User DID And DWN Sync
 
 Long term, users should be able to keep their route namespace in storage they
-control. A DWN-backed implementation is a strong candidate because it gives the
-product portable identity and data ownership without making that the main user
-story.
+control. Enbox gives Navastra that foundation through DIDs, typed protocols,
+encrypted records, local vaults, and DWN sync.
 
 ## Address-Bar Resolution Options
 
@@ -173,7 +179,8 @@ Cons:
 1. Browser extension keyword resolution.
 2. Web app for route management.
 3. IndexedDB cache.
-4. JSON import/export.
-5. Sync adapter interface.
-6. Hosted API or file-backed adapter for first build.
-7. DWN/Enbox adapter exploration after the core loop feels good.
+4. Enbox protocol for routes.
+5. Route CRUD through Enbox records.
+6. Session restore and sync against a development DWN endpoint.
+7. JSON import/export as a portability and debugging feature.
+8. Hosted resolver as a convenience layer, not the source of truth.

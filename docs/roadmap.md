@@ -7,13 +7,15 @@
 - define route schema
 - decide first address-bar workflow
 - choose first client stack
-- choose sync strategy for prototype
+- define Enbox route protocol
+- choose development DWN endpoint
 
 ## Phase 1: Local Prototype
 
 - web app route manager
-- local route store
-- create, edit, delete, search routes
+- Enbox connect/session restore
+- Enbox-backed route store
+- create, edit, delete, search routes through Enbox records
 - JSON import/export
 - hosted-style resolver route in development
 - manual testing with seed routes
@@ -25,7 +27,7 @@
 - redirect flow
 - not-found page
 - route creation shortcut from current tab
-- background sync from web app storage
+- cache hydration from Enbox records
 
 ## Phase 3: Import And Portability
 
@@ -36,21 +38,20 @@
 - route schema versioning
 - backup and restore
 
-## Phase 4: Sync
+## Phase 4: Enbox Sync
 
-- sync adapter interface
-- hosted sync prototype
+- development DWN sync
 - conflict handling rules
 - local cache invalidation
 - multi-device smoke testing
+- subscription-driven route manager updates
 
-## Phase 5: Ownership Layer
+## Phase 5: Ownership Layer Polish
 
-- evaluate DWN-backed storage
-- evaluate Enbox integration
 - define identity and authorization model
 - support user-controlled namespace storage
-- document migration path from hosted sync to user-controlled sync
+- support self-hosted DWN endpoint configuration
+- document Enbox implementation patterns
 
 ## Phase 6: Sharing
 
@@ -77,5 +78,6 @@
 - Hosted resolver domain and route syntax?
 - Local store implementation?
 - Route ID format?
-- Initial sync provider?
+- Initial DWN endpoint?
 - Whether to reserve `nav/` terminology or use a different command word?
+- Which Enbox subscription APIs should be exercised in v0?

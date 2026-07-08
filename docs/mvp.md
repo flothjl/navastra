@@ -1,12 +1,12 @@
 # MVP Scope
 
 The MVP should prove that personal go-links are useful outside an enterprise
-workspace.
+workspace and that Enbox can power a real consumer-facing app.
 
 ## MVP Goal
 
-Let one user create, resolve, edit, import, and export a personal route
-namespace across at least one browser.
+Let one user create, resolve, edit, import, export, and sync a personal route
+namespace across at least one browser using Enbox as the core data layer.
 
 ## Core Concepts
 
@@ -45,6 +45,19 @@ Initial acceptable entry points:
 - hosted resolver, such as `https://navastra.app/go/budget`
 - local development resolver for testing
 
+### Enbox Persistence
+
+Routes are stored as Enbox records from v0.
+
+The MVP should exercise:
+
+- `@enbox/api` or `@enbox/browser` connection flow
+- typed protocol definition for routes
+- record create, query, update, and delete
+- session restore
+- local cache hydrated from Enbox records
+- sync against a development DWN endpoint
+
 ### Route Management
 
 Users can:
@@ -82,16 +95,17 @@ These are important, but not required for the first validation build:
 - browser history intelligence
 - AI route suggestions
 - encrypted shared collections
-- decentralized storage beyond a simple adapter boundary
+- non-Enbox persistence as a first-class path
 
 ## MVP User Flow
 
 1. Install the extension or open the web app.
 2. Create the first route.
-3. Resolve the route from the browser.
-4. Import bookmarks.
-5. Promote selected bookmarks into memorable route names.
-6. Export routes to prove portability.
+3. Store it as an Enbox record.
+4. Resolve the route from the browser.
+5. Import bookmarks.
+6. Promote selected bookmarks into memorable route names.
+7. Export routes to prove portability.
 
 ## Non-Goals
 
@@ -99,6 +113,7 @@ These are important, but not required for the first validation build:
 - Do not require users to understand identity infrastructure.
 - Do not make sharing required for the core product to be useful.
 - Do not optimize for enterprise administration in v0.
+- Do not hide Enbox from the architecture; this is a reference app.
 
 ## Validation Questions
 
@@ -106,5 +121,4 @@ These are important, but not required for the first validation build:
 - Does address-bar resolution become a daily habit?
 - Which syntax feels best: `nav foo`, `go/foo`, `n/foo`, or hosted URLs?
 - Do people prefer manual naming, bookmark import, or suggestions?
-- Is portability a meaningful reason to choose Navastra, or only a retention
-  feature after the product is useful?
+- Which Enbox APIs feel great in a real app, and which need smoothing?

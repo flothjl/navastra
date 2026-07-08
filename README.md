@@ -15,9 +15,9 @@ nav/docs/api
 nav/josh/calendar
 ```
 
-Under the hood, Navastra is designed to be portable, local-first, and identity
-aware. A user's namespace should belong to them, sync across devices, and remain
-usable without being trapped inside a single workspace or browser account.
+Under the hood, Navastra is an Enbox reference app. Routes are portable records
+stored through an Enbox protocol, synced through Decentralized Web Nodes, and
+owned by the user's identity instead of a company workspace or browser account.
 
 ## Why
 
@@ -37,6 +37,8 @@ Navastra is for personal and small-group link recall:
 
 - **Fast recall:** a short name should beat searching, clicking, or asking.
 - **Personal namespace:** names should reflect how the user thinks.
+- **Enbox-native ownership:** routes should be stored as user-controlled Enbox
+  records from the first build.
 - **Portable by design:** the user's aliases should not be locked to one vendor.
 - **Local-first feel:** common routes should resolve quickly and work from cache.
 - **Shareable when useful:** people should be able to publish or subscribe to
@@ -48,6 +50,7 @@ Navastra is for personal and small-group link recall:
 - [MVP Scope](docs/mvp.md)
 - [Architecture](docs/architecture.md)
 - [Data Model](docs/data-model.md)
+- [Enbox Reference App](docs/enbox-reference-app.md)
 - [User Experience](docs/user-experience.md)
 - [Roadmap](docs/roadmap.md)
 - [Open Questions](docs/open-questions.md)
@@ -55,5 +58,5 @@ Navastra is for personal and small-group link recall:
 ## Status
 
 This repository is in v0 documentation mode. The next milestone is to validate
-the core address-bar workflow and choose the first technical path for namespace
-storage and sync.
+the core address-bar workflow while using Enbox as the primary persistence,
+identity, and sync layer.
