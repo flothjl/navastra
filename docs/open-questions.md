@@ -23,6 +23,7 @@
 - How should route names be indexed for fast lookup while keeping route data
   encrypted?
 - Should route cache hydration use query-on-load, subscriptions, or both?
+- Should the initial omnibox keyword be `nav`, `n`, or something else?
 
 ## Identity And Ownership
 
@@ -41,7 +42,7 @@
 
 ## Risks
 
-- Browser address-bar behavior may limit the ideal syntax.
+- Browser address-bar behavior limits raw `go/foo` syntax in the MVP.
 - Users may not want another extension.
 - Bookmark import may create noise instead of clarity.
 - Enbox API changes may affect the reference app while the platform is still in

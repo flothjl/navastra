@@ -45,6 +45,10 @@ The extension should not talk to a separate hosted route database. It should
 resolve from a compact local cache that is hydrated from the user's Enbox route
 records.
 
+For MVP, the extension should use the browser omnibox API with a keyword such
+as `nav`. Raw `go/foo` or `nav/foo` address-bar syntax is a later compatibility
+problem because browsers usually treat those forms as URLs or search queries.
+
 ### Web App
 
 The web app manages routes and settings.
@@ -207,7 +211,7 @@ Cons:
 5. Route CRUD through Enbox records.
 6. Session restore and sync against a development DWN endpoint.
 7. JSON import/export as a portability and debugging feature.
-8. Hosted resolver as a convenience layer, not the source of truth.
+8. Hosted resolver as a later convenience layer, not the source of truth.
 
 ## Initial Package Choices
 

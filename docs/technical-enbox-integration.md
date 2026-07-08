@@ -247,6 +247,30 @@ Hydrate that cache from Enbox records:
 Enbox remains the source of truth. The cache exists only to make address-bar
 resolution instant.
 
+## Extension Omnibox Flow
+
+The MVP extension should register an omnibox keyword, initially `nav`.
+
+```text
+nav budget
+nav docs/api
+```
+
+Resolution flow:
+
+1. User enters the omnibox keyword and route query.
+2. Extension normalizes the route query.
+3. Extension checks the resolver cache.
+4. Exact match redirects to the cached URL.
+5. Partial match returns suggestions when the browser API allows it.
+6. Missing route opens a not-found/create-route view.
+
+The omnibox path should not require a network call in the common case. Enbox
+sync and record queries feed the cache before resolution happens.
+
+Raw `go/foo` style address-bar routing is deferred because it usually requires
+custom search engine setup, DNS/local resolver tricks, or a hosted resolver.
+
 ## Development DWN
 
 Use one of these during development:

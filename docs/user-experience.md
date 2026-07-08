@@ -31,21 +31,33 @@ The first session should get a user to one successful jump quickly:
 
 The syntax should be short and easy to remember.
 
-Candidates:
+MVP syntax:
 
 ```text
 nav budget
+nav docs/api
+nav github/navastra
+```
+
+This uses the browser extension omnibox keyword flow. The user types `nav`,
+activates the extension keyword, then types the route name.
+
+Future or fallback syntax candidates:
+
+```text
 n budget
 go budget
 nav/budget
 ```
 
-For MVP, `nav budget` through a browser extension keyword is likely the most
-reliable. A hosted resolver can support URLs like:
+A hosted resolver can support URLs like:
 
 ```text
 https://navastra.app/go/budget
 ```
+
+The hosted resolver should be a fallback and sharing surface, not the first
+habit to validate.
 
 ## Route Manager
 

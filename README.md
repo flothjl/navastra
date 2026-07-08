@@ -58,6 +58,6 @@ Navastra is for personal and small-group link recall:
 
 ## Status
 
-This repository is in v0 documentation mode. The next milestone is to validate
-the core address-bar workflow while using Enbox as the primary persistence,
-identity, and sync layer.
+This repository is in v0 documentation mode. The next milestone is an
+extension-first MVP: omnibox route resolution backed by an Enbox route store and
+a compact local resolver cache.

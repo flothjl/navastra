@@ -5,8 +5,9 @@ workspace and that Enbox can power a real consumer-facing app.
 
 ## MVP Goal
 
-Let one user create, resolve, edit, import, export, and sync a personal route
-namespace across at least one browser using Enbox as the core data layer.
+Let one user install a browser extension, create routes, resolve them from the
+omnibox, edit/import/export them from a route manager, and sync the namespace
+with Enbox as the core data layer.
 
 ## Core Concepts
 
@@ -35,15 +36,28 @@ name: budget
 url: https://example.com/spreadsheets/household-budget
 ```
 
-### Route Resolution
+### Extension-First Route Resolution
 
 Users can type a route in a supported entry point and land on the destination.
 
-Initial acceptable entry points:
+The MVP entry point is a browser extension omnibox keyword:
 
-- browser extension keyword, such as `nav budget`
-- hosted resolver, such as `https://navastra.app/go/budget`
-- local development resolver for testing
+```text
+nav budget
+nav github/navastra
+nav docs/api
+```
+
+The extension should:
+
+- register an omnibox keyword
+- normalize the route query
+- resolve from a compact local cache
+- redirect immediately on exact match
+- show suggestions or a not-found page when no route matches
+
+A hosted resolver like `https://navastra.app/go/budget` can exist as a fallback
+and sharing surface, but it is not the primary MVP loop.
 
 ### Enbox Persistence
 
@@ -99,13 +113,16 @@ These are important, but not required for the first validation build:
 
 ## MVP User Flow
 
-1. Install the extension or open the web app.
-2. Create the first route.
-3. Store it as an Enbox record.
-4. Resolve the route from the browser.
-5. Import bookmarks.
-6. Promote selected bookmarks into memorable route names.
-7. Export routes to prove portability.
+1. Install the extension.
+2. Connect or create an Enbox-backed identity.
+3. Create the first route in the route manager.
+4. Store it as an Enbox record.
+5. Hydrate the extension resolver cache.
+6. Type `nav budget` in the omnibox.
+7. Resolve the route from the browser.
+8. Import bookmarks.
+9. Promote selected bookmarks into memorable route names.
+10. Export routes to prove portability.
 
 ## Non-Goals
 
@@ -114,11 +131,12 @@ These are important, but not required for the first validation build:
 - Do not make sharing required for the core product to be useful.
 - Do not optimize for enterprise administration in v0.
 - Do not hide Enbox from the architecture; this is a reference app.
+- Do not make the hosted resolver the primary MVP path.
 
 ## Validation Questions
 
 - Do people create route names naturally?
-- Does address-bar resolution become a daily habit?
+- Does omnibox resolution become a daily habit?
 - Which syntax feels best: `nav foo`, `go/foo`, `n/foo`, or hosted URLs?
 - Do people prefer manual naming, bookmark import, or suggestions?
 - Which Enbox APIs feel great in a real app, and which need smoothing?
