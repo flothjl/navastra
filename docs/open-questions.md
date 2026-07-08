@@ -17,8 +17,8 @@
 ## Technical
 
 - What is the first browser target?
-- Which Enbox package should the browser client use first: `@enbox/api` or
-  `@enbox/browser`?
+- Can the extension own the Enbox session directly, or should the web app own
+  session lifecycle and publish a cache to extension storage?
 - Which DWN endpoint should be used for development?
 - How should route names be indexed for fast lookup while keeping route data
   encrypted?

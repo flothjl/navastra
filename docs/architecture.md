@@ -41,6 +41,10 @@ Responsibilities:
 - open route management UI
 - hydrate and update the local route cache from Enbox records
 
+The extension should not talk to a separate hosted route database. It should
+resolve from a compact local cache that is hydrated from the user's Enbox route
+records.
+
 ### Web App
 
 The web app manages routes and settings.
@@ -53,6 +57,11 @@ Responsibilities:
 - manage collections
 - connect to Enbox
 - show sync and session state
+
+Browser clients should start with `@enbox/browser`, which re-exports the
+high-level Enbox APIs and provides browser connect helpers. Enbox's browser
+agent storage is Level-backed through IndexedDB, so the app should not replace
+the SDK storage with an in-memory store.
 
 ### Resolver
 
@@ -92,11 +101,26 @@ The route schema should remain portable and versioned, but Enbox is not a
 pluggable afterthought. Navastra should be a serious demonstration of the Enbox
 application model.
 
+The initial implementation should use:
+
+- `Enbox.connect()` for auth/session setup
+- `BrowserConnectHandler()` for browser-mediated connect flows when needed
+- `defineProtocol()` for the Navastra route protocol
+- `enbox.using(NavastraProtocol)` for typed route access
+- `repository()` if the structure-aware repository helper makes route CRUD
+  cleaner
+- `records.subscribe()` for live route manager updates if the API is stable
+  enough during implementation
+
 ### User DID And DWN Sync
 
 Long term, users should be able to keep their route namespace in storage they
 control. Enbox gives Navastra that foundation through DIDs, typed protocols,
 encrypted records, local vaults, and DWN sync.
+
+Product apps should scope identity sync to the protocols they own rather than
+requesting a full-DWN replica. For Navastra, that means syncing the Navastra
+route protocol first.
 
 ## Address-Bar Resolution Options
 
@@ -184,3 +208,11 @@ Cons:
 6. Session restore and sync against a development DWN endpoint.
 7. JSON import/export as a portability and debugging feature.
 8. Hosted resolver as a convenience layer, not the source of truth.
+
+## Initial Package Choices
+
+- Browser app: `@enbox/browser`
+- Shared protocol and data types: local `src/enbox/navastra-protocol.ts`
+- Optional route repository wrapper: `@enbox/api` `repository()`
+- Development DWN: Enbox preview endpoint or local `@enbox/dwn-server`
+- Runtime/package manager: Bun, matching the Enbox ecosystem

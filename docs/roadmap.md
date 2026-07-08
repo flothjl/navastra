@@ -9,6 +9,7 @@
 - choose first client stack
 - define Enbox route protocol
 - choose development DWN endpoint
+- document concrete Enbox package/API choices
 
 ## Phase 1: Local Prototype
 
@@ -16,6 +17,7 @@
 - Enbox connect/session restore
 - Enbox-backed route store
 - create, edit, delete, search routes through Enbox records
+- resolver cache hydrated from Enbox records
 - JSON import/export
 - hosted-style resolver route in development
 - manual testing with seed routes

@@ -50,6 +50,10 @@ Every core product action should map cleanly to Enbox records:
 Users should be able to return to Navastra and see their namespace without
 restarting identity setup.
 
+The default browser flow should prefer `Enbox.connect()`. Lower-level
+`AuthManager` usage should be reserved for places where Navastra needs explicit
+control over vault lifecycle, identity switching, or advanced recovery UX.
+
 ### Local-First UX
 
 The route cache should make resolution instant, but the cache should be derived
@@ -60,6 +64,9 @@ layer.
 
 The MVP should sync route records through a development DWN endpoint. Later
 versions should support self-hosted DWN endpoints.
+
+Sync should be scoped to the Navastra route protocol. Navastra should avoid
+requesting a full-DWN sync unless it becomes a wallet-style product.
 
 ### Subscriptions
 
@@ -79,9 +86,9 @@ collection flows.
 ## Suggested First Build
 
 1. Web app route manager.
-2. Enbox connect/session restore.
+2. Enbox connect/session restore via `@enbox/browser`.
 3. Navastra route protocol.
-4. Route CRUD backed by Enbox records.
+4. Route CRUD backed by typed Enbox records.
 5. IndexedDB route cache hydrated from Enbox records.
 6. Browser extension that resolves from the local cache.
 7. JSON export/import for debugging and portability.

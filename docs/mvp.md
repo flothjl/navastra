@@ -51,7 +51,7 @@ Routes are stored as Enbox records from v0.
 
 The MVP should exercise:
 
-- `@enbox/api` or `@enbox/browser` connection flow
+- `@enbox/browser` connection flow
 - typed protocol definition for routes
 - record create, query, update, and delete
 - session restore

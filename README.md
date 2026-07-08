@@ -51,6 +51,7 @@ Navastra is for personal and small-group link recall:
 - [Architecture](docs/architecture.md)
 - [Data Model](docs/data-model.md)
 - [Enbox Reference App](docs/enbox-reference-app.md)
+- [Technical Enbox Integration](docs/technical-enbox-integration.md)
 - [User Experience](docs/user-experience.md)
 - [Roadmap](docs/roadmap.md)
 - [Open Questions](docs/open-questions.md)

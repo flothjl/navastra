@@ -123,7 +123,7 @@ The first implementation should define a Navastra protocol with route and
 collection record types.
 
 ```ts
-import { defineProtocol } from '@enbox/api';
+import { defineProtocol } from '@enbox/browser';
 
 export const NavastraProtocol = defineProtocol({
   protocol: 'https://navastra.app/protocols/routes',
@@ -157,3 +157,27 @@ export const NavastraProtocol = defineProtocol({
 
 Route names should be available as tags so clients can query and hydrate local
 caches efficiently. The encrypted record body remains the source of truth.
+
+## Route Cache Shape
+
+The resolver cache should be derived data, not a second source of truth.
+
+```ts
+type RouteCacheEntry = {
+  name: string;
+  routeId: string;
+  url: string;
+  title?: string;
+  updatedAt: string;
+};
+```
+
+Cache updates should happen after:
+
+- initial Enbox route query
+- route create/update/delete
+- live query events from `records.subscribe()` when available
+- explicit resync or session restore
+
+The cache can live in extension storage or IndexedDB depending on the client,
+but it must be rebuildable from Enbox records.
